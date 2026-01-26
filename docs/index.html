@@ -229,6 +229,24 @@
       <p class="sec-sub" data-i18n="proj_note">Other projects are in progress but not added yet.</p>
       <div class="pgrid">
         <!-- HuggingFace image card -->
+         <a class="pcard-link" href="https://huggingface.co/spaces/icecubemanager/TLOU_ai_agent" target="_blank" rel="noopener">
+          <div class="pcard imgcard">
+            <div class="imgwrap">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/en/4/46/Video_Game_Cover_-_The_Last_of_Us.jpg"
+                alt="The Last of Us cover (Wikipedia)"
+                loading="lazy"
+              />
+              <div class="badge">TLOU Wiki Agent (Gemini)</div>
+            </div>
+            <div class="imgmeta">
+              <h3 data-i18n="p_t7">TLOU Wiki Encyclopedia Agent (Gemini + Wiki)</h3>
+              <p data-i18n="p_d7">…</p>
+              <div class="hint">huggingface.co/spaces/icecubemanager/TLOU_ai_agent</div>
+            </div>
+          </div>
+        </a>
+
         <a class="pcard-link" href="https://huggingface.co/spaces/icecubemanager/AI_Agent_with_tlou_quiz" target="_blank" rel="noopener">
           <div class="pcard imgcard">
             <div class="imgwrap">
@@ -246,7 +264,6 @@
             </div>
           </div>
         </a>
-
         <div class="pcard">
           <h3 data-i18n="p_t1">Entraînement Transformer (classification + génération)</h3>
           <p data-i18n="p_d1">Mise en avant du pipeline et des métriques (pas de détails ici).</p>
@@ -356,6 +373,10 @@
             p_t6: "Fine-tuning an ASR Model for Chinese Dialect Recognition and Transcription",
             p_d6:
             "Baseline avec funasr/paraformer-zh sans prétraitement. À partir des résultats baseline, application de méthodes de fine-tuning pour améliorer la reconnaissance et la transcription.",
+            
+            p_t7: "ai Agent encyclopédique TLOU (Gemini + Wiki)",
+            p_d7: "Agent basé sur le wiki (Fandom) : extraction via l’API MediaWiki, indexation locale (FAISS + embeddings MiniLM) et outils Search/Open URL. Chatbot Gradio (Chat + Search + Open URL + quiz) ; réponses guidées par les preuves récupérées, génération via Gemini.",
+
             proj_note: "D’autres projets sont en cours, mais ne sont pas encore ajoutés.",
 
             c_title: "Contact",
@@ -420,6 +441,10 @@
             p_t6: "Fine-tuning an ASR model for Chinese dialect recognition and transcription",
             p_d6:
             "Built a baseline with funasr/paraformer-zh without preprocessing. Based on baseline results, applied fine-tuning methods to achieve improved recognition and transcription.",
+            
+            p_t7: "TLOU encyclopedia agent (Gemini + Wiki)",
+            p_d7: "Wiki-grounded agent (Fandom): fetches pages via MediaWiki API, builds a local index (FAISS + MiniLM embeddings) and exposes Search/Open-URL tools. Gradio chatbot UI (Chat + Search + Open URL + quiz); answers are evidence-guided, generation via Gemini.",
+
             proj_note: "Other projects are in progress but not added yet.",
 
             c_title: "Contact",
