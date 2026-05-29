@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="fr" data-lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title data-i18n="title">CAO Yue — personal web</title>
+  <meta name="description" content="NLP / Web / Ingénierie" data-i18n-content="meta_desc" />
+
+  <style>
+    :root{
+      --bg:#08142a;
+      --fg:#e8eef6;
+      --muted:#a8b4c4;
+      --border:rgba(255,255,255,.10);
+      --radius:18px;
+      --gap:22px;
+      --padTop: 84px;
+      --padBlock: 56px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: var(--bg);
+      color:var(--fg);
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 22px}
+
+    .nav{
+      position:fixed;left:0;right:0;top:0;z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(11,13,16,.55);
+      border-bottom:1px solid var(--border);
+    }
+    .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{font-weight:700;letter-spacing:.4px}
+    .nav-right{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .nav a.btn, .lang-btn{
+      padding:10px 14px;border:1px solid var(--border);border-radius:999px;
+      background: rgba(255,255,255,.04);
+      cursor:pointer;color:var(--fg);font:inherit;
+    }
+
+    section{min-height:100vh;display:flex;align-items:center}
+    .hero{padding-top:64px}
+    .hero-grid{
+      display:grid;gap:var(--gap);
+      grid-template-columns: 1.15fr .85fr;
+      align-items:stretch;width:100%;
+    }
+    .card{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      padding:22px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+    .h1{font-size:42px;line-height:1.05;margin:0 0 10px}
+    .p{color:var(--muted);margin:0 0 16px;line-height:1.7}
+    .pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .pill{
+      border:1px solid var(--border);
+      padding:8px 12px;border-radius:999px;
+      font-size:13px;color:var(--muted);
+      background: rgba(255,255,255,.03);
+    }
+    .cta-row{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
+    .cta{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:12px 16px;border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.06);
+    }
+    .small{font-size:13px;color:var(--muted)}
+
+    /* Vertical Projects */
+    .section-pad{padding:92px 0 60px} /* 64 nav + spacing */
+    .sec-title{margin:0 0 14px;font-size:22px}
+    .sec-sub{margin:0 0 18px;color:var(--muted);line-height:1.7}
+
+    .pgrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--gap);
+    }
+    .pcard{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      padding:18px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    }
+    .pcard h3{margin:0 0 8px;font-size:18px}
+    .pcard p{margin:0;color:var(--muted);line-height:1.7}
+    .pcard-link{display:block}
+
+    .imgcard{padding:0;overflow:hidden}
+    .imgwrap{position:relative;aspect-ratio: 16 / 9;background: rgba(255,255,255,.03)}
+    .imgwrap img{
+      width:100%;height:100%;
+      object-fit:cover;display:block;
+      filter:saturate(1.05) contrast(1.02);
+    }
+    .badge{
+      position:absolute;left:14px;top:14px;
+      padding:10px 12px;border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(8px);
+      font-size:14px;letter-spacing:.2px;
+    }
+    .imgmeta{padding:16px 18px 18px}
+    .imgmeta .hint{margin-top:10px;font-size:13px;color:var(--muted);word-break:break-word}
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:var(--gap);
+      width:100%;
+    }
+
+
+
+    /* Motion: keep the original style, add a little movement */
+    html{scroll-behavior:smooth}
+    body::before, body::after{
+      content:"";position:fixed;z-index:-1;border-radius:999px;filter:blur(42px);opacity:.34;
+      background: radial-gradient(circle, rgba(126,168,255,.95), rgba(126,168,255,0) 62%);
+      animation: floatBlob 10s ease-in-out infinite alternate;
+    }
+    body::before{width:360px;height:360px;left:-130px;top:110px}
+    body::after{width:300px;height:300px;right:-120px;bottom:70px;animation-delay:-4s}
+    .brand{position:relative}
+    .brand::after{
+      content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:999px;
+      background:linear-gradient(90deg, transparent, rgba(232,238,246,.75), transparent);
+      transform:scaleX(.65);opacity:.75;
+    }
+    .card, .pcard{transition:transform .22s ease, background .22s ease, border-color .22s ease, box-shadow .22s ease}
+    .card:hover, .pcard:hover{
+      transform:translateY(-5px);
+      background:rgba(255,255,255,.055);
+      border-color:rgba(255,255,255,.22);
+      box-shadow:0 24px 70px rgba(0,0,0,.42);
+    }
+    .cta, .pill, .lang-btn, .nav a.btn{transition:transform .18s ease, background .18s ease, border-color .18s ease}
+    .cta:hover, .lang-btn:hover, .nav a.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.22)}
+    .pill:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.20)}
+    .h1{animation:softPop .7s ease both}
+    .card, .pcard{animation:fadeUp .65s ease both}
+    .hero-grid .card:nth-child(2){animation-delay:.08s}
+    .pgrid > *{animation:fadeUp .65s ease both}
+    .pgrid > *:nth-child(2){animation-delay:.04s}.pgrid > *:nth-child(3){animation-delay:.08s}.pgrid > *:nth-child(4){animation-delay:.12s}
+    .pgrid > *:nth-child(5){animation-delay:.16s}.pgrid > *:nth-child(6){animation-delay:.20s}.pgrid > *:nth-child(7){animation-delay:.24s}
+    .pgrid > *:nth-child(8){animation-delay:.28s}.pgrid > *:nth-child(9){animation-delay:.32s}
+    .badge{animation:badgePulse 2.6s ease-in-out infinite}
+
+    .internship-grid{
+      display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);width:100%;align-items:stretch;
+    }
+    .framework-list{display:grid;gap:12px;margin-top:14px}
+    .step{
+      border:1px solid var(--border);border-radius:16px;padding:13px 14px;
+      background:rgba(255,255,255,.035);color:var(--muted);line-height:1.55;
+    }
+    .step b{color:var(--fg);font-weight:650}
+    .step-num{
+      display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;margin-right:8px;
+      border-radius:999px;background:rgba(255,255,255,.08);color:var(--fg);font-size:12px;
+    }
+    .project-tag{display:inline-flex;margin-bottom:10px;font-size:12px;color:var(--muted);letter-spacing:.2px}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes softPop{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+    @keyframes floatBlob{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(36px,-24px,0) scale(1.08)}}
+    @keyframes badgePulse{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+
+
+    /* Extra fake-cool effects: pure CSS/JS, no plugin dependency */
+    #starfield{
+      position:fixed;inset:0;z-index:-3;width:100%;height:100%;pointer-events:none;opacity:.42;
+    }
+    .cursor-glow{
+      position:fixed;left:0;top:0;width:220px;height:220px;border-radius:999px;pointer-events:none;z-index:2;
+      background:radial-gradient(circle, rgba(126,168,255,.18), rgba(126,168,255,0) 62%);
+      transform:translate(-50%,-50%);mix-blend-mode:screen;opacity:0;transition:opacity .18s ease;
+    }
+    body:hover .cursor-glow{opacity:1}
+    .nav{box-shadow:0 0 26px rgba(126,168,255,.08)}
+    .card, .pcard{position:relative;overflow:hidden;transform-style:preserve-3d}
+    .card::before, .pcard::before{
+      content:"";position:absolute;inset:-1px;pointer-events:none;border-radius:inherit;opacity:0;
+      background:linear-gradient(120deg, transparent, rgba(126,168,255,.20), transparent);
+      transform:translateX(-120%);transition:opacity .25s ease;
+    }
+    .card:hover::before, .pcard:hover::before{opacity:1;animation:sheen 1.15s ease}
+    .cta{position:relative;overflow:hidden}
+    .cta::after{
+      content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+      background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.22), transparent 38%);
+      opacity:0;transition:opacity .18s ease;
+    }
+    .cta:hover::after{opacity:1}
+    .h1{
+      background:linear-gradient(90deg, #e8eef6, #9bb8ff, #e8eef6);
+      -webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;
+      animation:softPop .7s ease both, titleFlow 5s ease-in-out infinite;
+    }
+    .h1::after{content:"_";color:#9bb8ff;animation:caretBlink .9s steps(1) infinite}
+    .pill:nth-child(3n){animation-delay:.15s}.pill:nth-child(4n){animation-delay:.3s}.pill:nth-child(5n){animation-delay:.45s}
+    .pill{animation:pillFloat 5.5s ease-in-out infinite}
+    .step{position:relative;overflow:hidden}
+    .step::after{
+      content:"";position:absolute;left:-30%;top:0;width:20%;height:100%;pointer-events:none;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.10), transparent);
+      transform:skewX(-18deg);animation:scanLine 5s ease-in-out infinite;
+    }
+    @keyframes sheen{from{transform:translateX(-120%)}to{transform:translateX(120%)}}
+    @keyframes titleFlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+    @keyframes caretBlink{0%,48%{opacity:1}49%,100%{opacity:0}}
+    @keyframes pillFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+    @keyframes scanLine{0%,70%{left:-35%;opacity:0}78%{opacity:1}100%{left:120%;opacity:0}}
+
+    @media (prefers-reduced-motion: reduce){
+      *, *::before, *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    }
+
+    @media (max-width: 900px){
+      .hero-grid{grid-template-columns: 1fr}
+      .pgrid{grid-template-columns: 1fr}
+      .footer-grid{grid-template-columns: 1fr}
+      .internship-grid{grid-template-columns:1fr}
+      .h1{font-size:36px}
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <header class="nav">
+    <div class="wrap">
+      <div class="brand">CAO Yue</div>
+      <div class="nav-right">
+        <a class="btn" href="#projects" data-i18n="nav_work">Projets</a>
+        <a class="btn" href="#internship" data-i18n="nav_internship">Stage</a>
+        <a class="btn" href="#skills" data-i18n="nav_skills">Compétences</a>
+        <a class="btn" href="#contact" data-i18n="nav_contact">Contact</a>
+        <button class="lang-btn" id="langToggle" type="button">FR</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="card">
+        <h1 class="h1" data-i18n="hero_h1">Étudiante en NLP </h1>
+        <p class="p" data-i18n="hero_p">
+          Présentation courte (à ajuster). NLP, automatisation, reproductibilité, évaluation.
+        </p>
+
+        <div class="cta-row">
+          <a class="cta" id="cvLink" href="assets/cv_fr.pdf" target="_blank" rel="noopener" data-i18n="cta_cv">CV (PDF)</a>
+          <a class="cta" href="https://github.com/2063mmz" target="_blank" rel="noopener">GitHub</a>
+          <a class="cta" href="https://huggingface.co/icecubemanager" target="_blank" rel="noopener">Hugging Face</a>
+          <a class="cta" href="https://www.linkedin.com/in/yue-cao-4933b831b" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+
+        <div class="pill-row" style="margin-top:16px">
+          <div class="pill">NLP</div><div class="pill">RAG</div>
+          <div class="pill">Python</div><div class="pill">PyTorch</div><div class="pill">ChromaDB</div>
+          <div class="pill">OCR</div><div class="pill">document parsing</div>
+        </div>
+
+        <p class="small" data-i18n="lang_line" style="margin-top:14px">
+          Langues : Chinois (natif) · Français (B2/C1) · Anglais (B2/C1)
+        </p>
+      </div>
+
+      <div class="card" id="skills">
+        <h2 style="margin:0 0 10px;font-size:18px" data-i18n="skills_title">Compétences</h2>
+        <div class="pill-row" id="skillsPills">
+            <!-- Python / NLP -->
+            <div class="pill"><b>Python</b></div>
+            <div class="pill">pandas</div>
+            <div class="pill">NumPy</div>
+            <div class="pill">scikit-learn</div>
+            <div class="pill">NLTK</div>
+            <div class="pill">spaCy</div>
+            <div class="pill">Stanza</div>
+            <div class="pill">THULAC</div>
+            <div class="pill">Word2Vec</div>
+
+            <!-- DL -->
+            <div class="pill"><b>Deep Learning</b></div>
+            <div class="pill">Keras</div>
+            <div class="pill">PyTorch</div>
+            <div class="pill">CNN</div>
+            <div class="pill">RNN</div>
+            <div class="pill">Transformer</div>
+            <!-- Programming -->
+            <div class="pill"><b>Programming</b></div>
+            <div class="pill">Python</div>
+            <div class="pill">C · en cours d’apprentissage</div>
+            <!-- Data / corpus -->
+            <div class="pill"><b>Corpus / Data</b></div>
+            <div class="pill">HTML/XML/CSV/JSON</div>
+            <!-- DB / shell -->
+            <div class="pill">SQL</div>
+            <div class="pill">Bash/Shell</div>
+
+            <!-- Tools -->
+            <div class="pill"><b>Tools</b></div>
+            <div class="pill">VS Code</div>
+            <div class="pill">Oxygen XML</div>
+            <div class="pill">MySQL</div>
+            <div class="pill">Unitex</div>
+            <div class="pill">Praat</div>
+            <div class="pill">Tesseract5</div>
+            <div class="pill">PyMuPDF</div>
+            <div class="pill">ChromaDB</div>
+        </div>
+
+        <h3 style="margin:16px 0 10px;font-size:16px" data-i18n="tasks_title">Tâches déjà réalisées</h3>
+        <div class="pill-row" id="tasksPills">
+            <div class="pill" data-i18n="t_sent">classification</div>
+            <div class="pill" data-i18n="t_gen">génération</div>
+            <div class="pill" data-i18n="t_ext">extraction</div>
+            <div class="pill" data-i18n="t_tts">TTS</div>
+            <div class="pill">ASR</div>
+            <div class="pill">OCR</div>
+            <div class="pill">RAG</div>
+            <div class="pill">document parsing</div>
+            <div class="pill">indexing</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects vertical only -->
+  <section id="projects" class="section-pad">
+    <div class="wrap">
+      <h2 class="sec-title" data-i18n="proj_title">Projets</h2>
+      <p class="sec-sub" data-i18n="proj_note">Other projects are in progress but not added yet.</p>
+      <div class="pgrid">
+        <!-- HuggingFace image card -->
+         <a class="pcard-link" href="https://huggingface.co/spaces/icecubemanager/TLOU_ai_agent" target="_blank" rel="noopener">
+          <div class="pcard imgcard">
+            <div class="imgwrap">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/en/4/46/Video_Game_Cover_-_The_Last_of_Us.jpg"
+                alt="The Last of Us cover (Wikipedia)"
+                loading="lazy"
+              />
+              <div class="badge">TLOU Wiki Agent (Gemini)</div>
+            </div>
+            <div class="imgmeta">
+              <h3 data-i18n="p_t7">TLOU Wiki Encyclopedia Agent (Gemini + Wiki)</h3>
+              <p data-i18n="p_d7">…</p>
+              <div class="hint">huggingface.co/spaces/icecubemanager/TLOU_ai_agent</div>
+            </div>
+          </div>
+        </a>
+
+        <a class="pcard-link" href="https://huggingface.co/spaces/icecubemanager/AI_Agent_with_tlou_quiz" target="_blank" rel="noopener">
+          <div class="pcard imgcard">
+            <div class="imgwrap">
+              <img
+                src="https://clay-atlas.com/wp-content/uploads/2022/05/huggingface_logo.png"
+                alt="The Last of Us cover"
+                loading="lazy"
+              />
+              <div class="badge">little ai agent tool</div>
+            </div>
+            <div class="imgmeta">
+              <h3>AI Agent with TLOU Quiz (Hugging Face Space)</h3>
+              <p data-i18n="hf_desc">Clique pour ouvrir le Space (démo en ligne).</p>
+              <div class="hint">huggingface.co/spaces/icecubemanager/AI_Agent_with_tlou_quiz</div>
+            </div>
+          </div>
+        </a>
+
+        <a class="pcard-link" href="https://github.com/2063mmz/nn2026-Prediction_trafic_urbain" target="_blank" rel="noopener">
+          <div class="pcard">
+            <span class="project-tag">PyTorch · sequence modeling · urban data</span>
+            <h3 data-i18n="p_t8">Urban traffic prediction</h3>
+            <p data-i18n="p_d8">…</p>
+            <div class="hint" style="margin-top:10px;font-size:13px;color:var(--muted);word-break:break-word">github.com/2063mmz/nn2026-Prediction_trafic_urbain</div>
+          </div>
+        </a>
+
+        <div class="pcard">
+          <h3 data-i18n="p_t1">Entraînement Transformer (classification + génération)</h3>
+          <p data-i18n="p_d1">Mise en avant du pipeline et des métriques (pas de détails ici).</p>
+        </div>
+
+        <div class="pcard">
+          <h3 data-i18n="p_t2">Pipeline RAG</h3>
+          <p data-i18n="p_d2">Récupération + génération, stockage vectoriel, orchestration.</p>
+        </div>
+
+        <div class="pcard">
+          <h3 data-i18n="p_t3">CIFAR-10 — CNN</h3>
+          <p data-i18n="p_d3">Classification d’images, entraînement et comparaison de configurations.</p>
+        </div>
+
+        <div class="pcard">
+          <h3 data-i18n="p_t4">Real-time writing corpus (prétraitement + stats)</h3>
+          <p data-i18n="p_d4">Préparation de corpus annoté et statistiques descriptives.</p>
+        </div>
+
+        <div class="pcard">
+          <h3 data-i18n="p_t5">DEFT’09 Task 3 — réplication/extension</h3>
+          <p data-i18n="p_d5">Réplication + extension expérimentale légère.</p>
+        </div>
+
+        <div class="pcard">
+          <h3 data-i18n="p_t6">Fine-tuning ASR (dialecte chinois)</h3>
+          <p data-i18n="p_d6">Reconnaissance & transcription, adaptation de modèle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="internship" class="section-pad">
+    <div class="wrap">
+      <h2 class="sec-title" data-i18n="intern_section_title">💼 Stage / Internship 👩‍🎓</h2>
+      <p class="sec-sub" data-i18n="intern_section_note">Projet R&amp;D réalisé en contexte industriel, séparé des projets académiques et personnels.</p>
+
+      <div class="internship-grid">
+        <div class="card">
+          <span class="project-tag"> R&amp;D · NLP · industrial maintenance🔧</span>
+          <h3 class="sec-title" data-i18n="intern_title">Stage R&amp;D — Offline RAG for industrial maintenance</h3>
+          <p class="sec-sub" data-i18n="intern_desc">
+            Conception d’un générateur de packs d’assistance pour un assistant mobile hors ligne destiné aux techniciens de maintenance.
+          </p>
+          <div class="pill-row">
+            <div class="pill">RAG</div><div class="pill">document ingestion</div>
+            <div class="pill">OCR</div><div class="pill">embeddings</div><div class="pill">metadata</div><div class="pill">pack generation</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="sec-title" data-i18n="framework_title">Project framework</h3>
+          <div class="framework-list">
+            <div class="step"><span class="step-num">1</span><b data-i18n="fw_1_t">Collect</b> — <span data-i18n="fw_1_d">identify useful maintenance documents from work orders and CMMS data.</span></div>
+            <div class="step"><span class="step-num">2</span><b data-i18n="fw_2_t">Extract</b> — <span data-i18n="fw_2_d">parse PDF/DOCX/JSON sources, tables and images, with OCR fallback.</span></div>
+            <div class="step"><span class="step-num">3</span><b data-i18n="fw_3_t">Structure</b> — <span data-i18n="fw_3_d">clean, chunk and enrich content with metadata and provenance.</span></div>
+            <div class="step"><span class="step-num">4</span><b data-i18n="fw_4_t">Index</b> — <span data-i18n="fw_4_d">generate embeddings, searchable indexes and retrieval metadata.</span></div>
+            <div class="step"><span class="step-num">5</span><b data-i18n="fw_5_t">Package</b> — <span data-i18n="fw_5_d">export compact assistance packs for offline mobile integration.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section-pad">
+    <div class="wrap footer-grid">
+      <div class="card">
+        <h2 style="margin:0 0 10px" data-i18n="c_title">Contact</h2>
+        <p class="p" data-i18n="c_p">
+          Email : yuec1963@gmail.com<br/>Téléphone : +33 7 75 79 78 10<br/>GitHub : github.com/2063mmz
+        </p>
+      </div>
+      <div class="card">
+        <h2 style="margin:0 0 10px" data-i18n="cv_title">CV</h2>
+        <p class="p" data-i18n="cv_p">Ouvrir le PDF dans un nouvel onglet.</p>
+        <div class="cta-row">
+          <a class="cta" href="assets/cv_fr.pdf" target="_blank" rel="noopener">CV FR</a>
+          <a class="cta" href="assets/cv_en.pdf" target="_blank" rel="noopener">CV EN</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function init(){
+        const dict = {
+        fr: {
+            title: "CAO Yue — personal web",
+            meta_desc: "NLP / Web / Ingénierie",
+            nav_work: "Projets",
+            nav_internship: "💼👩‍🎓Stage",
+            nav_skills: "Compétences",
+            nav_contact: "Contact",
+
+            hero_h1: "NLP · RAG · IA embarquée",
+            hero_p:
+            "Étudiante en M2 PluriTAL, parcours R&D, je travaille sur le NLP, les systèmes RAG et l’ingénierie de données textuelles. " +
+            "Mon profil relie traitement automatique des langues, extraction documentaire, évaluation et déploiement de solutions légères en contexte contraint.",
+
+            cta_cv: "CV mis à jour (PDF)",
+            lang_line: "Langues : Chinois (langue maternelle) · Français (B2/C1) · Anglais (B2/C1)",
+
+            skills_title: "Compétences",
+            tasks_title: "Tâches déjà réalisées",
+            t_sent: "classification de sentiments",
+            t_gen: "génération",
+            t_ext: "extraction",
+            t_tts: "synthèse vocale / TTS",
+
+            proj_title: "Projets",
+            proj_sub: "Titres + description courte. Pas de détails de projet ni de liste de cours.",
+            hf_desc: "Clique pour ouvrir le Space (démo en ligne).",
+
+            // Projets + descriptions
+            p_t1: "Entraînement de modèles Transformer pour la classification et la génération de chinois classique",
+            p_d1:
+            "Entraînement from scratch d’un classificateur de genre et de modèles génératifs en architecture Transformer (type BERT/GPT) " +
+            "pour identifier le genre d’un texte et générer du chinois classique, expérimentation sur prose historique et poésie Tang.",
+
+            p_t2: "Pipeline RAG",
+            p_d2:
+            "Développé un pipeline RAG complet. Création d’un mini système RAG avec ChromaDB et Gemini pour le question-réponse sur un roman (texte brut).",
+
+            p_t3: "Classification d’images CIFAR-10 à l’aide d’un CNN",
+            p_d3:
+            "Entraînement d’un CNN sur CIFAR-10 avec PyTorch et évaluation. Amélioration des résultats via ajustement de l’architecture et du processus d’entraînement " +
+            "(augmentation de données, mini-lots avec mélange aléatoire, ReLU) pour atteindre les meilleures performances possibles.",
+
+            p_t4: "Preprocessing and statistical analysis of real-time writing data (annotated corpus)",
+            p_d4:
+            "Étude du lien entre la dynamique d’écriture en temps réel (pauses, suppressions, modifications) et l’organisation linguistique, " +
+            "avec segmentation en chunks via SEM et extraction d’informations syntaxiques.",
+
+            p_t5: "Replication-based extension of DEFT’09 Task 3",
+            p_d5:
+            "Modification du dispositif original : ajout d’une évaluation test dédupliquée et création d’un corpus d’entraînement alternatif via extraction par règles de phrases subjectives, " +
+            "puis entraînement de classificateurs sklearn sur des TF-IDF word n-grams.",
+
+            p_t6: "Fine-tuning an ASR Model for Chinese Dialect Recognition and Transcription",
+            p_d6:
+            "Baseline avec funasr/paraformer-zh sans prétraitement. À partir des résultats baseline, application de méthodes de fine-tuning pour améliorer la reconnaissance et la transcription.",
+            
+            p_t7: "ai Agent encyclopédique TLOU (Gemini + Wiki)",
+            p_d7: "Agent basé sur le wiki (Fandom) : extraction via l’API MediaWiki, indexation locale (FAISS + embeddings MiniLM) et outils Search/Open URL. Chatbot Gradio (Chat + Search + Open URL + quiz) ; réponses guidées par les preuves récupérées, génération via Gemini.",
+
+            p_t8: "Prédiction du trafic urbain",
+            p_d8: "Projet d’apprentissage profond pour prédire le trafic urbain à partir de données séquentielles, avec préparation des données, entraînement de modèles et évaluation expérimentale.",
+
+            intern_section_title: "💼 Stage / Internship 👩‍🎓",
+            intern_section_note: "Projet R&D réalisé en contexte industriel, séparé des projets académiques et personnels.",
+            intern_title: "Stage R&D — RAG hors ligne pour la maintenance industrielle",
+            intern_desc: "Conception d’un générateur de packs d’assistance pour un assistant mobile hors ligne destiné aux techniciens de maintenance.",
+            framework_title: "Cadre du projet",
+            fw_1_t: "Collecter",
+            fw_1_d: "identifier les documents utiles à partir des ordres de travail et des données CMMS/GMAO.",
+            fw_2_t: "Extraire",
+            fw_2_d: "traiter les sources PDF/DOCX/JSON, les tableaux et les images, avec OCR en secours.",
+            fw_3_t: "Structurer",
+            fw_3_d: "nettoyer, segmenter et enrichir les contenus avec métadonnées et provenance.",
+            fw_4_t: "Indexer",
+            fw_4_d: "générer les embeddings, les index consultables et les métadonnées de recherche.",
+            fw_5_t: "Packager",
+            fw_5_d: "exporter des packs compacts pour l’intégration mobile hors ligne.",
+
+            proj_note: "Sélection de projets NLP, RAG, apprentissage profond et traitement de corpus.",
+
+            c_title: "Contact",
+            c_p:
+            "Email : yuec1963@gmail.com<br/>" +
+            "GitHub : github.com/2063mmz<br/>" +
+            "LinkedIn : linkedin.com/in/yue-cao-4933b831b",
+
+            cv_title: "CV",
+            cv_p: "CV français et anglais à placer dans <code>assets/cv_fr.pdf</code> et <code>assets/cv_en.pdf</code>."
+        },
+
+        en: {
+            title: "CAO Yue — personal web",
+            meta_desc: "NLP / Web / Engineering",
+            nav_work: "Projects",
+            nav_internship: "💼 Internship",
+            nav_skills: "Skills",
+            nav_contact: "Contact",
+
+            hero_h1: "NLP · RAG · embedded AI",
+            hero_p:
+            "I am an M2 PluriTAL student in the R&D, working on NLP, RAG systems and textual data engineering. " +
+            "My profile connects natural language processing, document extraction, evaluation and lightweight deployment under operational constraints.",
+
+            cta_cv: "Updated CV (PDF)",
+            lang_line: "Languages: Chinese (native) · French (B2/C1) · English (B2/C1)",
+
+            skills_title: "Skills",
+            tasks_title: "Tasks already done",
+            t_sent: "sentiment classification",
+            t_gen: "generation",
+            t_ext: "extraction",
+            t_tts: "speech synthesis / TTS",
+
+            proj_title: "Projects",
+            hf_desc: "Click to open the Space (online demo).",
+
+            p_t1: "Training Transformer models for genre classification and classical Chinese generation",
+            p_d1:
+            "Trained from scratch a genre classifier and generative models with two Transformer architectures (BERT/GPT-type) " +
+            "to identify the genre of a text and generate classical Chinese; experimented on historical prose and Tang poetry.",
+
+            p_t2: "RAG pipeline",
+            p_d2:
+            "Built a complete RAG pipeline. Implemented a mini RAG system using ChromaDB and Gemini for question answering over a raw-text novel.",
+
+            p_t3: "CIFAR-10 image classification with a CNN",
+            p_d3:
+            "Trained a CNN on CIFAR-10 with PyTorch and evaluated it. Improved performance by tuning architecture and training " +
+            "(data augmentation, mini-batches + shuffle, ReLU) to reach the best possible results.",
+
+            p_t4: "Preprocessing and statistical analysis of real-time writing data (annotated corpus)",
+            p_d4:
+            "Studied the relationship between real-time writing dynamics (pauses, deletions, modifications) and linguistic organization, " +
+            "with chunk segmentation via SEM and extraction of syntactic information.",
+
+            p_t5: "Replication-based extension of DEFT’09 Task 3",
+            p_d5:
+            "Extended the original setup by adding a de-duplicated test evaluation and creating an alternative training corpus via rule-based subjective-sentence extraction, " +
+            "then trained tuned sklearn classifiers on TF-IDF word n-gram features.",
+
+            p_t6: "Fine-tuning an ASR model for Chinese dialect recognition and transcription",
+            p_d6:
+            "Built a baseline with funasr/paraformer-zh without preprocessing. Based on baseline results, applied fine-tuning methods to achieve improved recognition and transcription.",
+            
+            p_t7: "TLOU encyclopedia agent (Gemini + Wiki)",
+            p_d7: "Wiki-grounded agent (Fandom): fetches pages via MediaWiki API, builds a local index (FAISS + MiniLM embeddings) and exposes Search/Open-URL tools. Gradio chatbot UI (Chat + Search + Open URL + quiz); answers are evidence-guided, generation via Gemini.",
+
+            p_t8: "Urban traffic prediction",
+            p_d8: "Deep learning project for urban traffic prediction from sequential data, including data preparation, model training and experimental evaluation.",
+
+            intern_section_title: "💼 Stage / Internship 👩‍🎓",
+            intern_section_note: "R&D project carried out in an industrial context, separated from academic and personal projects.",
+            intern_title: "R&D internship — Offline RAG for industrial maintenance",
+            intern_desc: "Design of an assistance-pack generator for an offline mobile assistant used by maintenance technicians.",
+            framework_title: "Project framework",
+            fw_1_t: "Collect",
+            fw_1_d: "identify useful maintenance documents from work orders and CMMS data.",
+            fw_2_t: "Extract",
+            fw_2_d: "parse PDF/DOCX/JSON sources, tables and images, with OCR fallback.",
+            fw_3_t: "Structure",
+            fw_3_d: "clean, chunk and enrich content with metadata and provenance.",
+            fw_4_t: "Index",
+            fw_4_d: "generate embeddings, searchable indexes and retrieval metadata.",
+            fw_5_t: "Package",
+            fw_5_d: "export compact assistance packs for offline mobile integration.",
+
+            proj_note: "Selected projects in NLP, RAG, deep learning and corpus processing.",
+
+            c_title: "Contact",
+            c_p:
+            "Email: yuec1963@gmail.com<br/>" +
+            "GitHub: github.com/2063mmz<br/>" +
+            "LinkedIn: linkedin.com/in/yue-cao-4933b831b",
+
+            
+            cv_title: "CV",
+            cv_p: "French and English CV files should be placed as <code>assets/cv_fr.pdf</code> and <code>assets/cv_en.pdf</code>."
+        }
+        };
+
+        const applyLang = (lang)=>{
+        const L = dict[lang] || dict.fr;
+        document.documentElement.lang = lang;
+        document.documentElement.dataset.lang = lang;
+
+        document.querySelectorAll("[data-i18n]").forEach(el=>{
+            const k = el.getAttribute("data-i18n");
+            if(k && L[k] != null) el.innerHTML = L[k];
+        });
+        document.querySelectorAll("[data-i18n-content]").forEach(el=>{
+            const k = el.getAttribute("data-i18n-content");
+            if(k && L[k] != null) el.setAttribute("content", L[k]);
+        });
+
+        const btn = document.getElementById("langToggle");
+        if(btn) btn.textContent = (lang === "fr" ? "FR" : "EN");
+
+        const cv = document.getElementById("cvLink");
+        if(cv) cv.setAttribute("href", lang === "fr" ? "assets/cv_fr.pdf" : "assets/cv_en.pdf");
+        };
+
+        const saved = localStorage.getItem("site_lang");
+        const initial = (saved === "en" || saved === "fr") ? saved : "fr";
+        applyLang(initial);
+
+        const toggle = document.getElementById("langToggle");
+        if(toggle){
+        toggle.addEventListener("click", ()=>{
+            const now = document.documentElement.dataset.lang === "fr" ? "en" : "fr";
+            localStorage.setItem("site_lang", now);
+            applyLang(now);
+        });
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', (e)=>{
+            const id = a.getAttribute('href');
+            if(!id || id.length<2) return;
+            const el = document.querySelector(id);
+            if(!el) return;
+            e.preventDefault();
+            el.scrollIntoView({behavior:'smooth', block:'start'});
+        });
+        });
+    }
+
+
+
+    function addVisualEffects(){
+        const glow = document.querySelector('.cursor-glow');
+        document.addEventListener('pointermove', (e)=>{
+            if(glow){
+                glow.style.left = e.clientX + 'px';
+                glow.style.top = e.clientY + 'px';
+            }
+            document.querySelectorAll('.cta:hover').forEach(btn=>{
+                const r = btn.getBoundingClientRect();
+                btn.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+                btn.style.setProperty('--my', (e.clientY - r.top) + 'px');
+            });
+        });
+
+        document.querySelectorAll('.card, .pcard').forEach(card=>{
+            card.addEventListener('pointermove', (e)=>{
+                if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                const r = card.getBoundingClientRect();
+                const x = (e.clientX - r.left) / r.width - .5;
+                const y = (e.clientY - r.top) / r.height - .5;
+                card.style.transform = `translateY(-5px) rotateX(${-y * 4}deg) rotateY(${x * 5}deg)`;
+            });
+            card.addEventListener('pointerleave', ()=>{
+                card.style.transform = '';
+            });
+        });
+
+        const canvas = document.getElementById('starfield');
+        if(canvas){
+            const ctx = canvas.getContext('2d');
+            let stars = [];
+            const resize = ()=>{
+                canvas.width = window.innerWidth * devicePixelRatio;
+                canvas.height = window.innerHeight * devicePixelRatio;
+                stars = Array.from({length: Math.min(120, Math.floor(window.innerWidth / 10))}, ()=>({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    r: Math.random() * 1.6 + .25,
+                    vx: (Math.random() - .5) * .18 * devicePixelRatio,
+                    vy: (Math.random() - .5) * .18 * devicePixelRatio,
+                    a: Math.random() * .55 + .2
+                }));
+            };
+            const draw = ()=>{
+                ctx.clearRect(0,0,canvas.width,canvas.height);
+                ctx.fillStyle = 'rgba(232,238,246,.75)';
+                stars.forEach(s=>{
+                    s.x += s.vx; s.y += s.vy;
+                    if(s.x < 0) s.x = canvas.width; if(s.x > canvas.width) s.x = 0;
+                    if(s.y < 0) s.y = canvas.height; if(s.y > canvas.height) s.y = 0;
+                    ctx.globalAlpha = s.a;
+                    ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();
+                });
+                ctx.globalAlpha = .16;
+                ctx.strokeStyle = 'rgba(126,168,255,.45)';
+                for(let i=0;i<stars.length;i++){
+                    for(let j=i+1;j<stars.length;j++){
+                        const dx=stars[i].x-stars[j].x, dy=stars[i].y-stars[j].y;
+                        const d=Math.hypot(dx,dy);
+                        if(d < 95 * devicePixelRatio){
+                            ctx.beginPath();ctx.moveTo(stars[i].x,stars[i].y);ctx.lineTo(stars[j].x,stars[j].y);ctx.stroke();
+                        }
+                    }
+                }
+                if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches) requestAnimationFrame(draw);
+            };
+            resize();draw();window.addEventListener('resize', resize);
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', ()=>{ init(); addVisualEffects(); });
+    </script>
+
+</body>
+</html>
