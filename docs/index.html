@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title data-i18n="title">CAO Yue — personal web</title>
+  <title data-i18n="title">CAO Yue — site personnel</title>
   <meta name="description" content="NLP / Web / Ingénierie" data-i18n-content="meta_desc" />
 
   <style>
@@ -257,7 +257,7 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="card">
-        <h1 class="h1" data-i18n="hero_h1">Étudiante en NLP </h1>
+        <h1 class="h1" data-i18n="hero_h1">TAL/NLP</h1>
         <p class="p" data-i18n="hero_p">
           Présentation courte (à ajuster). NLP, automatisation, reproductibilité, évaluation.
         </p>
@@ -270,9 +270,9 @@
         </div>
 
         <div class="pill-row" style="margin-top:16px">
-          <div class="pill">NLP</div><div class="pill">RAG</div>
+          <div class="pill">TAL/NLP</div><div class="pill">RAG</div><div class="pill">GraphRAG</div>
           <div class="pill">Python</div><div class="pill">PyTorch</div><div class="pill">ChromaDB</div>
-          <div class="pill">OCR</div><div class="pill">document parsing</div>
+          <div class="pill">Neo4j</div><div class="pill">LangChain</div><div class="pill">OCR</div><div class="pill">document parsing</div>
         </div>
 
         <p class="small" data-i18n="lang_line" style="margin-top:14px">
@@ -322,6 +322,9 @@
             <div class="pill">Tesseract5</div>
             <div class="pill">PyMuPDF</div>
             <div class="pill">ChromaDB</div>
+            <div class="pill">Neo4j</div>
+            <div class="pill">LangChain</div>
+            <div class="pill">GraphRAG</div>
         </div>
 
         <h3 style="margin:16px 0 10px;font-size:16px" data-i18n="tasks_title">Tâches déjà réalisées</h3>
@@ -333,6 +336,7 @@
             <div class="pill">ASR</div>
             <div class="pill">OCR</div>
             <div class="pill">RAG</div>
+            <div class="pill">GraphRAG</div>
             <div class="pill">document parsing</div>
             <div class="pill">indexing</div>
         </div>
@@ -344,7 +348,7 @@
   <section id="projects" class="section-pad">
     <div class="wrap">
       <h2 class="sec-title" data-i18n="proj_title">Projets</h2>
-      <p class="sec-sub" data-i18n="proj_note">Other projects are in progress but not added yet.</p>
+      <p class="sec-sub" data-i18n="proj_note">Sélection de projets issus du CV et de démonstrations personnelles.</p>
       <div class="pgrid">
         <!-- HuggingFace image card -->
          <a class="pcard-link" href="https://huggingface.co/spaces/icecubemanager/TLOU_ai_agent" target="_blank" rel="noopener">
@@ -355,11 +359,11 @@
                 alt="The Last of Us cover (Wikipedia)"
                 loading="lazy"
               />
-              <div class="badge">TLOU Wiki Agent (Gemini)</div>
+              <div class="badge">Agent wiki TLOU</div>
             </div>
             <div class="imgmeta">
-              <h3 data-i18n="p_t7">TLOU Wiki Encyclopedia Agent (Gemini + Wiki)</h3>
-              <p data-i18n="p_d7">…</p>
+              <h3 data-i18n="p_t7">Agent wiki TLOU (Gemini + Wiki)</h3>
+              <p data-i18n="p_d7">Démo personnelle autour de The Last of Us : récupération de pages wiki, indexation locale et interface Gradio avec génération via Gemini.</p>
               <div class="hint">huggingface.co/spaces/icecubemanager/TLOU_ai_agent</div>
             </div>
           </div>
@@ -373,11 +377,11 @@
                 alt="The Last of Us cover"
                 loading="lazy"
               />
-              <div class="badge">little ai agent tool</div>
+              <div class="badge">Quiz TLOU</div>
             </div>
             <div class="imgmeta">
-              <h3>AI Agent with TLOU Quiz (Hugging Face Space)</h3>
-              <p data-i18n="hf_desc">Clique pour ouvrir le Space (démo en ligne).</p>
+              <h3 data-i18n="p_t9">Quiz TLOU avec agent IA</h3>
+              <p data-i18n="p_d9">Démo Hugging Face : quiz interactif autour de The Last of Us, avec interface Gradio.</p>
               <div class="hint">huggingface.co/spaces/icecubemanager/AI_Agent_with_tlou_quiz</div>
             </div>
           </div>
@@ -385,21 +389,21 @@
 
         <a class="pcard-link" href="https://github.com/2063mmz/nn2026-Prediction_trafic_urbain" target="_blank" rel="noopener">
           <div class="pcard">
-            <span class="project-tag">PyTorch · sequence modeling · urban data</span>
-            <h3 data-i18n="p_t8">Urban traffic prediction</h3>
-            <p data-i18n="p_d8">…</p>
+            <span class="project-tag">PyTorch · séries temporelles · données urbaines</span>
+            <h3 data-i18n="p_t8">Prévision du trafic urbain parisien</h3>
+            <p data-i18n="p_d8">Pipeline de prévision à court terme combinant comptages de trafic de Paris Open Data et variables météo Open-Meteo.</p>
             <div class="hint" style="margin-top:10px;font-size:13px;color:var(--muted);word-break:break-word">github.com/2063mmz/nn2026-Prediction_trafic_urbain</div>
           </div>
         </a>
 
         <div class="pcard">
-          <h3 data-i18n="p_t1">Entraînement Transformer (classification + génération)</h3>
-          <p data-i18n="p_d1">Mise en avant du pipeline et des métriques (pas de détails ici).</p>
+          <h3 data-i18n="p_t1">Modèles Transformer pour le chinois classique</h3>
+          <p data-i18n="p_d1">Entraînement à partir de zéro de Transformers de type BERT et GPT pour la classification de genres et la génération de texte en chinois classique.</p>
         </div>
 
         <div class="pcard">
-          <h3 data-i18n="p_t2">Pipeline RAG</h3>
-          <p data-i18n="p_d2">Récupération + génération, stockage vectoriel, orchestration.</p>
+          <h3 data-i18n="p_t2">Pipeline RAG pour question-réponse</h3>
+          <p data-i18n="p_d2">Construction d’un pipeline RAG avec ChromaDB et Gemini pour répondre à des questions sur L’Amie prodigieuse.</p>
         </div>
 
         <div class="pcard">
@@ -408,17 +412,17 @@
         </div>
 
         <div class="pcard">
-          <h3 data-i18n="p_t4">Real-time writing corpus (prétraitement + stats)</h3>
+          <h3 data-i18n="p_t4">Corpus d’écriture en temps réel</h3>
           <p data-i18n="p_d4">Préparation de corpus annoté et statistiques descriptives.</p>
         </div>
 
         <div class="pcard">
-          <h3 data-i18n="p_t5">DEFT’09 Task 3 — réplication/extension</h3>
+          <h3 data-i18n="p_t5">DEFT’09 tâche 3 — reproduction expérimentale</h3>
           <p data-i18n="p_d5">Réplication + extension expérimentale légère.</p>
         </div>
 
         <div class="pcard">
-          <h3 data-i18n="p_t6">Fine-tuning ASR (dialecte chinois)</h3>
+          <h3 data-i18n="p_t6">Adaptation ASR pour un dialecte chinois</h3>
           <p data-i18n="p_d6">Reconnaissance & transcription, adaptation de modèle.</p>
         </div>
       </div>
@@ -428,29 +432,32 @@
 
   <section id="internship" class="section-pad">
     <div class="wrap">
-      <h2 class="sec-title" data-i18n="intern_section_title">💼 Stage / Internship 👩‍🎓</h2>
+      <h2 class="sec-title" data-i18n="intern_section_title">Stage</h2>
       <p class="sec-sub" data-i18n="intern_section_note">Projet R&amp;D réalisé en contexte industriel, séparé des projets académiques et personnels.</p>
 
       <div class="internship-grid">
         <div class="card">
-          <span class="project-tag"> R&amp;D · NLP · industrial maintenance🔧</span>
-          <h3 class="sec-title" data-i18n="intern_title">Stage R&amp;D — Offline RAG for industrial maintenance</h3>
+          <span class="project-tag">R&amp;D · TAL/NLP · maintenance industrielle</span>
+          <h3 class="sec-title" data-i18n="intern_title">Générateur Intelligent de Packs d’Assistance pour la Maintenance Industrielle Hors-Ligne</h3>
+          <p class="small" data-i18n="intern_meta" style="margin:0 0 12px">
+            Berger-Levrault - Lab I5.0 · Févr. 2026 - Août 2026 · Stagiaire de recherche · France
+          </p>
           <p class="sec-sub" data-i18n="intern_desc">
             Conception d’un générateur de packs d’assistance pour un assistant mobile hors ligne destiné aux techniciens de maintenance.
           </p>
           <div class="pill-row">
-            <div class="pill">RAG</div><div class="pill">document ingestion</div>
-            <div class="pill">OCR</div><div class="pill">embeddings</div><div class="pill">metadata</div><div class="pill">pack generation</div>
+            <div class="pill">RAG</div><div class="pill">ingestion documentaire</div>
+            <div class="pill">OCR</div><div class="pill">embeddings</div><div class="pill">métadonnées</div><div class="pill">génération de packs</div>
           </div>
         </div>
         <div class="card">
-          <h3 class="sec-title" data-i18n="framework_title">Project framework</h3>
+          <h3 class="sec-title" data-i18n="framework_title">Cadre du projet</h3>
           <div class="framework-list">
-            <div class="step"><span class="step-num">1</span><b data-i18n="fw_1_t">Collect</b> — <span data-i18n="fw_1_d">identify useful maintenance documents from work orders and CMMS data.</span></div>
-            <div class="step"><span class="step-num">2</span><b data-i18n="fw_2_t">Extract</b> — <span data-i18n="fw_2_d">parse PDF/DOCX/JSON sources, tables and images, with OCR fallback.</span></div>
-            <div class="step"><span class="step-num">3</span><b data-i18n="fw_3_t">Structure</b> — <span data-i18n="fw_3_d">clean, chunk and enrich content with metadata and provenance.</span></div>
-            <div class="step"><span class="step-num">4</span><b data-i18n="fw_4_t">Index</b> — <span data-i18n="fw_4_d">generate embeddings, searchable indexes and retrieval metadata.</span></div>
-            <div class="step"><span class="step-num">5</span><b data-i18n="fw_5_t">Package</b> — <span data-i18n="fw_5_d">export compact assistance packs for offline mobile integration.</span></div>
+            <div class="step"><span class="step-num">1</span><b data-i18n="fw_1_t">Collecter</b> — <span data-i18n="fw_1_d">analyser les ordres de travail et sélectionner les contenus pertinents parmi des sources hétérogènes.</span></div>
+            <div class="step"><span class="step-num">2</span><b data-i18n="fw_2_t">Extraire</b> — <span data-i18n="fw_2_d">traiter les sources PDF/DOCX/JSON, les tableaux et les images, avec OCR en secours.</span></div>
+            <div class="step"><span class="step-num">3</span><b data-i18n="fw_3_t">Structurer</b> — <span data-i18n="fw_3_d">nettoyer, segmenter et enrichir les contenus avec métadonnées et provenance.</span></div>
+            <div class="step"><span class="step-num">4</span><b data-i18n="fw_4_t">Indexer</b> — <span data-i18n="fw_4_d">préparer le chunking et générer les embeddings, les index et les métadonnées requis.</span></div>
+            <div class="step"><span class="step-num">5</span><b data-i18n="fw_5_t">Optimiser</b> — <span data-i18n="fw_5_d">compresser, dédupliquer et prioriser les contenus pour améliorer la qualité des packs.</span></div>
           </div>
         </div>
       </div>
@@ -480,14 +487,14 @@
     function init(){
         const dict = {
         fr: {
-            title: "CAO Yue — personal web",
-            meta_desc: "NLP / Web / Ingénierie",
+            title: "CAO Yue — site personnel",
+            meta_desc: "TAL / NLP / Ingénierie",
             nav_work: "Projets",
-            nav_internship: "💼👩‍🎓Stage",
+            nav_internship: "Stage",
             nav_skills: "Compétences",
             nav_contact: "Contact",
 
-            hero_h1: "NLP · RAG · IA embarquée",
+            hero_h1: "TAL/NLP",
             hero_p:
             "Étudiante en M2 PluriTAL, parcours R&D, je travaille sur le NLP, les systèmes RAG et l’ingénierie de données textuelles. " +
             "Mon profil relie traitement automatique des langues, extraction documentaire, évaluation et déploiement de solutions légères en contexte contraint.",
@@ -507,57 +514,62 @@
             hf_desc: "Clique pour ouvrir le Space (démo en ligne).",
 
             // Projets + descriptions
-            p_t1: "Entraînement de modèles Transformer pour la classification et la génération de chinois classique",
+            p_t1: "Modèles Transformer pour le chinois classique",
             p_d1:
-            "Entraînement from scratch d’un classificateur de genre et de modèles génératifs en architecture Transformer (type BERT/GPT) " +
-            "pour identifier le genre d’un texte et générer du chinois classique, expérimentation sur prose historique et poésie Tang.",
+            "Entraînement à partir de zéro de Transformers de type BERT et GPT pour la classification de genres et la génération de texte en chinois classique, " +
+            "avec des expérimentations sur la prose historique et la poésie des Tang.",
 
-            p_t2: "Pipeline RAG",
+            p_t2: "Pipeline RAG pour question-réponse",
             p_d2:
-            "Développé un pipeline RAG complet. Création d’un mini système RAG avec ChromaDB et Gemini pour le question-réponse sur un roman (texte brut).",
+            "Construction d’un pipeline RAG avec ChromaDB et Gemini pour répondre à des questions sur le roman L’Amie prodigieuse : " +
+            "segmentation, plongements vectoriels, indexation vectorielle et orchestration de prompts.",
 
-            p_t3: "Classification d’images CIFAR-10 à l’aide d’un CNN",
+            p_t3: "Classification d’images CIFAR-10 avec un CNN",
             p_d3:
-            "Entraînement d’un CNN sur CIFAR-10 avec PyTorch et évaluation. Amélioration des résultats via ajustement de l’architecture et du processus d’entraînement " +
-            "(augmentation de données, mini-lots avec mélange aléatoire, ReLU) pour atteindre les meilleures performances possibles.",
+            "Entraînement et évaluation d’un CNN sur CIFAR-10 avec PyTorch, avec amélioration des résultats par ajustement de l’architecture, " +
+            "raffinement de l’entraînement, augmentation de données et mélange des mini-lots.",
 
-            p_t4: "Preprocessing and statistical analysis of real-time writing data (annotated corpus)",
+            p_t4: "Corpus d’écriture en temps réel : prétraitement et statistiques",
             p_d4:
-            "Étude du lien entre la dynamique d’écriture en temps réel (pauses, suppressions, modifications) et l’organisation linguistique, " +
-            "avec segmentation en chunks via SEM et extraction d’informations syntaxiques.",
+            "Travail de prétraitement et d’analyse statistique sur un corpus annoté d’écriture en temps réel, en restant au niveau exploration de données et préparation de corpus.",
 
-            p_t5: "Replication-based extension of DEFT’09 Task 3",
+            p_t5: "DEFT’09 tâche 3 — reproduction expérimentale",
             p_d5:
-            "Modification du dispositif original : ajout d’une évaluation test dédupliquée et création d’un corpus d’entraînement alternatif via extraction par règles de phrases subjectives, " +
-            "puis entraînement de classificateurs sklearn sur des TF-IDF word n-grams.",
+            "Reproduction et petite extension expérimentale d’une tâche de fouille d’opinion, avec extraction par règles, représentation TF-IDF et classificateurs scikit-learn.",
 
-            p_t6: "Fine-tuning an ASR Model for Chinese Dialect Recognition and Transcription",
+            p_t6: "Adaptation ASR pour un dialecte chinois",
             p_d6:
-            "Baseline avec funasr/paraformer-zh sans prétraitement. À partir des résultats baseline, application de méthodes de fine-tuning pour améliorer la reconnaissance et la transcription.",
+            "Mise en place d’un modèle de référence avec funasr/paraformer-zh, puis essais d’adaptation du modèle pour la reconnaissance et la transcription d’un dialecte chinois.",
             
-            p_t7: "ai Agent encyclopédique TLOU (Gemini + Wiki)",
-            p_d7: "Agent basé sur le wiki (Fandom) : extraction via l’API MediaWiki, indexation locale (FAISS + embeddings MiniLM) et outils Search/Open URL. Chatbot Gradio (Chat + Search + Open URL + quiz) ; réponses guidées par les preuves récupérées, génération via Gemini.",
+            p_t7: "Agent wiki TLOU (Gemini + Wiki)",
+            p_d7: "Démo personnelle autour de The Last of Us : récupération de pages via l’API MediaWiki, indexation locale avec FAISS et plongements MiniLM, puis interface Gradio avec recherche, ouverture d’URL et génération via Gemini.",
 
-            p_t8: "Prédiction du trafic urbain",
-            p_d8: "Projet d’apprentissage profond pour prédire le trafic urbain à partir de données séquentielles, avec préparation des données, entraînement de modèles et évaluation expérimentale.",
+            p_t8: "Prévision du trafic urbain parisien",
+            p_d8: "Pipeline de prévision à court terme combinant comptages de trafic de Paris Open Data et variables météo Open-Meteo : prétraitement JSON, fusion trafic-météo, variables calendaires, puis comparaison d’une référence historique, de HistGradientBoosting, LSTM et GRU.",
 
-            intern_section_title: "💼 Stage / Internship 👩‍🎓",
+            p_t9: "Quiz TLOU avec agent IA",
+            p_d9: "Démo Hugging Face autour de The Last of Us : quiz interactif avec interface Gradio, présentée comme projet personnel exploratoire.",
+
+            intern_section_title: "Stage",
             intern_section_note: "Projet R&D réalisé en contexte industriel, séparé des projets académiques et personnels.",
-            intern_title: "Stage R&D — RAG hors ligne pour la maintenance industrielle",
-            intern_desc: "Conception d’un générateur de packs d’assistance pour un assistant mobile hors ligne destiné aux techniciens de maintenance.",
+            intern_title: "Générateur Intelligent de Packs d’Assistance pour la Maintenance Industrielle Hors-Ligne",
+            intern_meta: "Berger-Levrault - Lab I5.0 · Févr. 2026 - Août 2026 · Stagiaire de recherche · France",
+            intern_desc:
+            "Prototypage d’un système générant automatiquement des packs d’assistance compacts pour des tiny LLM hors ligne déployés sur appareils mobiles, " +
+            "à destination des techniciens de maintenance en environnement déconnecté, sous contraintes de confidentialité, de latence et de ressources.",
             framework_title: "Cadre du projet",
             fw_1_t: "Collecter",
-            fw_1_d: "identifier les documents utiles à partir des ordres de travail et des données CMMS/GMAO.",
+            fw_1_d: "analyser les ordres de travail afin d’identifier les besoins documentaires et sélectionner les contenus les plus pertinents parmi des sources hétérogènes.",
             fw_2_t: "Extraire",
             fw_2_d: "traiter les sources PDF/DOCX/JSON, les tableaux et les images, avec OCR en secours.",
             fw_3_t: "Structurer",
             fw_3_d: "nettoyer, segmenter et enrichir les contenus avec métadonnées et provenance.",
             fw_4_t: "Indexer",
-            fw_4_d: "générer les embeddings, les index consultables et les métadonnées de recherche.",
-            fw_5_t: "Packager",
-            fw_5_d: "exporter des packs compacts pour l’intégration mobile hors ligne.",
+            fw_4_d: "préparer le chunking et générer les embeddings, les index et les métadonnées requis par le moteur hors ligne existant.",
+            fw_5_t: "Optimiser",
+            fw_5_d: "optimiser la qualité des packs par compression, déduplication, priorisation et indicateurs simples de qualité.",
 
-            proj_note: "Sélection de projets NLP, RAG, apprentissage profond et traitement de corpus.",
+            proj_note: "Sélection de projets issus du CV et de démonstrations personnelles.",
 
             c_title: "Contact",
             c_p:
@@ -566,23 +578,23 @@
             "LinkedIn : linkedin.com/in/yue-cao-4933b831b",
 
             cv_title: "CV",
-            cv_p: "CV français et anglais à placer dans <code>assets/cv_fr.pdf</code> et <code>assets/cv_en.pdf</code>."
+            cv_p: "Ouvrir le CV français ou anglais dans un nouvel onglet."
         },
 
         en: {
-            title: "CAO Yue — personal web",
+            title: "CAO Yue — personal website",
             meta_desc: "NLP / Web / Engineering",
             nav_work: "Projects",
-            nav_internship: "💼 Internship",
+            nav_internship: "Internship",
             nav_skills: "Skills",
             nav_contact: "Contact",
 
-            hero_h1: "NLP · RAG · embedded AI",
+            hero_h1: "NLP",
             hero_p:
-            "I am an M2 PluriTAL student in the R&D, working on NLP, RAG systems and textual data engineering. " +
+            "I am an M2 PluriTAL student in the R&D track, working on NLP, RAG systems and textual data engineering. " +
             "My profile connects natural language processing, document extraction, evaluation and lightweight deployment under operational constraints.",
 
-            cta_cv: "Updated CV (PDF)",
+            cta_cv: "CV (PDF)",
             lang_line: "Languages: Chinese (native) · French (B2/C1) · English (B2/C1)",
 
             skills_title: "Skills",
@@ -595,57 +607,60 @@
             proj_title: "Projects",
             hf_desc: "Click to open the Space (online demo).",
 
-            p_t1: "Training Transformer models for genre classification and classical Chinese generation",
+            p_t1: "Transformer models for Classical Chinese",
             p_d1:
-            "Trained from scratch a genre classifier and generative models with two Transformer architectures (BERT/GPT-type) " +
-            "to identify the genre of a text and generate classical Chinese; experimented on historical prose and Tang poetry.",
+            "Trained BERT- and GPT-style Transformers from scratch for genre classification and Classical Chinese text generation, " +
+            "with experiments on historical prose and Tang poetry.",
 
-            p_t2: "RAG pipeline",
+            p_t2: "RAG pipeline for question answering",
             p_d2:
-            "Built a complete RAG pipeline. Implemented a mini RAG system using ChromaDB and Gemini for question answering over a raw-text novel.",
+            "Built a RAG pipeline with ChromaDB and Gemini for question answering over My Brilliant Friend, including chunking, embeddings, vector indexing and prompt orchestration.",
 
             p_t3: "CIFAR-10 image classification with a CNN",
             p_d3:
-            "Trained a CNN on CIFAR-10 with PyTorch and evaluated it. Improved performance by tuning architecture and training " +
-            "(data augmentation, mini-batches + shuffle, ReLU) to reach the best possible results.",
+            "Trained and evaluated a CNN on CIFAR-10 using PyTorch, with performance improvements through architecture tuning, training refinements, data augmentation and shuffled mini-batches.",
 
             p_t4: "Preprocessing and statistical analysis of real-time writing data (annotated corpus)",
             p_d4:
-            "Studied the relationship between real-time writing dynamics (pauses, deletions, modifications) and linguistic organization, " +
-            "with chunk segmentation via SEM and extraction of syntactic information.",
+            "Preprocessed and analyzed an annotated real-time writing corpus, framed as corpus preparation and exploratory statistics rather than a production model.",
 
-            p_t5: "Replication-based extension of DEFT’09 Task 3",
+            p_t5: "DEFT’09 Task 3 — experimental reproduction",
             p_d5:
-            "Extended the original setup by adding a de-duplicated test evaluation and creating an alternative training corpus via rule-based subjective-sentence extraction, " +
-            "then trained tuned sklearn classifiers on TF-IDF word n-gram features.",
+            "Reproduced and lightly extended an opinion-mining task using rule-based extraction, TF-IDF features and scikit-learn classifiers.",
 
-            p_t6: "Fine-tuning an ASR model for Chinese dialect recognition and transcription",
+            p_t6: "ASR adaptation for a Chinese dialect",
             p_d6:
-            "Built a baseline with funasr/paraformer-zh without preprocessing. Based on baseline results, applied fine-tuning methods to achieve improved recognition and transcription.",
+            "Set up a baseline with funasr/paraformer-zh, then tested model-adaptation methods for Chinese dialect recognition and transcription.",
             
-            p_t7: "TLOU encyclopedia agent (Gemini + Wiki)",
-            p_d7: "Wiki-grounded agent (Fandom): fetches pages via MediaWiki API, builds a local index (FAISS + MiniLM embeddings) and exposes Search/Open-URL tools. Gradio chatbot UI (Chat + Search + Open URL + quiz); answers are evidence-guided, generation via Gemini.",
+            p_t7: "TLOU wiki agent (Gemini + Wiki)",
+            p_d7: "Personal demo around The Last of Us: fetches pages through the MediaWiki API, builds a local FAISS index with MiniLM embeddings, and provides a Gradio interface with search, open-URL and Gemini generation.",
 
-            p_t8: "Urban traffic prediction",
-            p_d8: "Deep learning project for urban traffic prediction from sequential data, including data preparation, model training and experimental evaluation.",
+            p_t8: "Paris urban traffic forecasting",
+            p_d8: "Short-term forecasting pipeline combining Paris Open Data traffic counts and Open-Meteo weather variables: JSON preprocessing, traffic-weather alignment, calendar features, then comparison of a historical baseline, HistGradientBoosting, LSTM and GRU.",
 
-            intern_section_title: "💼 Stage / Internship 👩‍🎓",
+            p_t9: "TLOU quiz with an AI agent",
+            p_d9: "Hugging Face demo around The Last of Us: an interactive quiz with a Gradio interface, presented as an exploratory personal project.",
+
+            intern_section_title: "Internship",
             intern_section_note: "R&D project carried out in an industrial context, separated from academic and personal projects.",
-            intern_title: "R&D internship — Offline RAG for industrial maintenance",
-            intern_desc: "Design of an assistance-pack generator for an offline mobile assistant used by maintenance technicians.",
+            intern_title: "Intelligent Assistance Pack Generator for Offline Industrial Maintenance",
+            intern_meta: "Berger-Levrault - Lab I5.0 · Feb. 2026 - Aug. 2026 · Research Intern · France",
+            intern_desc:
+            "Prototyping a system that automatically generates compact assistance packs for offline tiny LLMs deployed on mobile devices, " +
+            "to support maintenance technicians in disconnected environments under privacy, latency and resource constraints.",
             framework_title: "Project framework",
             fw_1_t: "Collect",
-            fw_1_d: "identify useful maintenance documents from work orders and CMMS data.",
+            fw_1_d: "analyze work orders to identify documentary needs and select the most relevant content from heterogeneous sources.",
             fw_2_t: "Extract",
             fw_2_d: "parse PDF/DOCX/JSON sources, tables and images, with OCR fallback.",
             fw_3_t: "Structure",
             fw_3_d: "clean, chunk and enrich content with metadata and provenance.",
             fw_4_t: "Index",
-            fw_4_d: "generate embeddings, searchable indexes and retrieval metadata.",
-            fw_5_t: "Package",
-            fw_5_d: "export compact assistance packs for offline mobile integration.",
+            fw_4_d: "prepare chunking and generate the embeddings, indexes and metadata required by the existing offline engine.",
+            fw_5_t: "Optimize",
+            fw_5_d: "optimize pack quality through compression, deduplication, prioritization and simple quality indicators.",
 
-            proj_note: "Selected projects in NLP, RAG, deep learning and corpus processing.",
+            proj_note: "Selected CV-backed projects and personal demos.",
 
             c_title: "Contact",
             c_p:
@@ -655,7 +670,7 @@
 
             
             cv_title: "CV",
-            cv_p: "French and English CV files should be placed as <code>assets/cv_fr.pdf</code> and <code>assets/cv_en.pdf</code>."
+            cv_p: "Open the French or English CV in a new tab."
         }
         };
 
