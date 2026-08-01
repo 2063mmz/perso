@@ -1,0 +1,3 @@
+gradio
+langchain>=1.2,<2
+langchain-google-genai
